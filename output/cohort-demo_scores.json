@@ -1,0 +1,736 @@
+{
+  "folder": "samples\\cohort",
+  "generated_at": "2026-10-08 14:33:36",
+  "rubric_version": "v2",
+  "stats": {
+    "n": 4,
+    "complete": 2,
+    "partial": 1,
+    "insufficient": 1,
+    "avg_quality": 0.7552083333333334,
+    "avg_composite": 77.3125,
+    "flagged": 2,
+    "most_missing": [
+      "Demo（视频/截图/实录）",
+      2
+    ],
+    "weakest": [
+      "可验证",
+      0.55
+    ],
+    "missing_counter": {
+      "Demo（视频/截图/实录）": 2,
+      "教学说明": 1,
+      "AI 日志": 1
+    }
+  },
+  "authors": [
+    {
+      "author": "Chenmingyuan",
+      "tag": "合成夹具",
+      "version": 1,
+      "completeness": {
+        "matched": 5,
+        "band": "complete",
+        "missing": [],
+        "roles": {
+          "skill_doc": [
+            "Chenmingyuan_C4_skill说明.md"
+          ],
+          "executable_content": [
+            "Chenmingyuan_C4_literature-format-assistant.py"
+          ],
+          "demo": [
+            "Chenmingyuan_C4_demo_运行结果.md",
+            "Chenmingyuan_C4_demo.png"
+          ],
+          "teaching_doc": [
+            "Chenmingyuan_C4_教学说明.md"
+          ],
+          "ai_log": [
+            "Chenmingyuan_C4_AI日志.md"
+          ]
+        }
+      },
+      "criteria": [
+        {
+          "key": "reusable",
+          "label": "可复用",
+          "ratio": 1.0,
+          "rating": "✅",
+          "checks": [
+            {
+              "id": "install_instructions",
+              "ok": true,
+              "detail": "命中 /安装/ → …后的 bib 文件\"。**  ## 四、安装与环境要求  ```bash pip i…"
+            },
+            {
+              "id": "no_absolute_paths",
+              "ok": true,
+              "detail": "未发现硬编码/敏感内容"
+            },
+            {
+              "id": "env_requirements",
+              "ok": true,
+              "detail": "命中 /环境要求/ → …bib 文件\"。**  ## 四、安装与环境要求  ```bash pip instal…"
+            },
+            {
+              "id": "platform_noted",
+              "ok": true,
+              "detail": "命中 /windows/ → …Python，无编译依赖） - 平台：Windows / macOS / Linux 均可运…"
+            },
+            {
+              "id": "no_hardcoded_secrets",
+              "ok": true,
+              "detail": "未发现硬编码/敏感内容"
+            }
+          ]
+        },
+        {
+          "key": "executable",
+          "label": "可执行",
+          "ratio": 1.0,
+          "rating": "✅",
+          "checks": [
+            {
+              "id": "runnable_artifact",
+              "ok": true,
+              "detail": "可运行产物：Chenmingyuan_C4_literature-format-assistant.py"
+            },
+            {
+              "id": "code_parses",
+              "ok": true,
+              "detail": "1 段 Python 代码全部通过 ast.parse"
+            },
+            {
+              "id": "package_structure",
+              "ok": null,
+              "detail": "无 .skill/.zip 压缩包（跳过）"
+            },
+            {
+              "id": "skill_frontmatter",
+              "ok": null,
+              "detail": "未提交 SKILL.md（以脚本形式交付，跳过）"
+            },
+            {
+              "id": "workflow_described",
+              "ok": true,
+              "detail": "命中 /## *步骤/ → …构提交）。  ## 一、三分钟上手  ### 步骤 1：装依赖  ```bash pip…"
+            }
+          ]
+        },
+        {
+          "key": "verifiable",
+          "label": "可验证",
+          "ratio": 1.0,
+          "rating": "✅",
+          "checks": [
+            {
+              "id": "has_examples",
+              "ok": true,
+              "detail": "命中 /示例/ → …复杂嵌套字段加的。 > 如果你只想跑最小示例，把 `parse_bib` 换成自带的…"
+            },
+            {
+              "id": "expected_output_defined",
+              "ok": true,
+              "detail": "命中 /预期/ → …写成 `zhang, san`。  **预期输出**：  ``` [1] OK…"
+            },
+            {
+              "id": "reproducible_commands",
+              "ok": true,
+              "detail": "命中 /python +[^\\s]+\\.py/ → …. 运行：    ```bash    python literature-format-assistant.py --input refs…"
+            },
+            {
+              "id": "demo_evidence",
+              "ok": true,
+              "detail": "既有截图/录屏（Chenmingyuan_C4_demo.png），又有实录文档（Chenmingyuan_C4_demo_运行结果.md）"
+            },
+            {
+              "id": "success_criteria",
+              "ok": true,
+              "detail": "命中 /通过/ → …y - 不依赖任何本机绝对路径，所有输入通过命令行参数传入  ## 五、使用步骤…"
+            }
+          ]
+        },
+        {
+          "key": "clear_io",
+          "label": "IO 明确",
+          "ratio": 1.0,
+          "rating": "✅",
+          "checks": [
+            {
+              "id": "input_section",
+              "ok": true,
+              "detail": "命中 /输入/ → …套格式规则\"封装成可复用的校验流程：**输入一份 BibTeX 或 参考文献列表，输…"
+            },
+            {
+              "id": "output_section",
+              "ok": true,
+              "detail": "命中 /输出/ → …入一份 BibTeX 或 参考文献列表，输出逐条格式诊断与可一键替换的修正稿。**…"
+            },
+            {
+              "id": "io_oneliner",
+              "ok": true,
+              "detail": "命中 /输入.{0,80}?输出/ → …| 学生自查引用格式 |  ## 三、输入与输出  **输入：** - 必填：一个 `.…"
+            },
+            {
+              "id": "io_typed",
+              "ok": true,
+              "detail": "命中 /格式[:：]/ → …题  写论文最后一步总要手动核对参考文献格式：作者名大小写、期刊名缩写、卷号期号页码标…"
+            }
+          ]
+        }
+      ],
+      "score": 100.0,
+      "red_flags": [],
+      "actions": []
+    },
+    {
+      "author": "Songpengfei",
+      "tag": "",
+      "version": 2,
+      "completeness": {
+        "matched": 5,
+        "band": "complete",
+        "missing": [],
+        "roles": {
+          "skill_doc": [
+            "Songpengfei_C4_skill说明.md",
+            "Songpengfei_C4_传播包.md"
+          ],
+          "executable_content": [
+            "Songpengfei_C4_lesson-design-assistant.skill",
+            "Songpengfei_C4_lesson-design-assistant.tar.gz"
+          ],
+          "demo": [
+            "Songpengfei_C4_demo_示例教案输出.md",
+            "Songpengfei_C4_demo.png",
+            "Songpengfei_C4_demo_校验报告.md"
+          ],
+          "teaching_doc": [
+            "Songpengfei_C4_README.md",
+            "Songpengfei_C4_教学说明.md"
+          ],
+          "ai_log": [
+            "Songpengfei_C4_AI日志.md"
+          ]
+        }
+      },
+      "criteria": [
+        {
+          "key": "reusable",
+          "label": "可复用",
+          "ratio": 1.0,
+          "rating": "✅",
+          "checks": [
+            {
+              "id": "install_instructions",
+              "ok": true,
+              "detail": "命中 /安装/ → …|  ## 五、使用步骤  1. **安装**：将 `Songpengfei_C4…"
+            },
+            {
+              "id": "no_absolute_paths",
+              "ok": true,
+              "detail": "未发现硬编码/敏感内容"
+            },
+            {
+              "id": "env_requirements",
+              "ok": true,
+              "detail": "命中 /环境要求/ → …Claude Skills 的环境；若环境要求 tar.gz，可用附带的 `.tar.…"
+            },
+            {
+              "id": "platform_noted",
+              "ok": true,
+              "detail": "命中 /windows/ → …lesson_check.py`、修复 Windows 中文输出乱码、重构 demo。  --…"
+            },
+            {
+              "id": "no_hardcoded_secrets",
+              "ok": true,
+              "detail": "未发现硬编码/敏感内容"
+            }
+          ]
+        },
+        {
+          "key": "executable",
+          "label": "可执行",
+          "ratio": 1.0,
+          "rating": "✅",
+          "checks": [
+            {
+              "id": "runnable_artifact",
+              "ok": true,
+              "detail": "可运行产物：Songpengfei_C4_lesson-design-assistant.skill、Songpengfei_C4_lesson-design-assistant.tar.gz"
+            },
+            {
+              "id": "code_parses",
+              "ok": true,
+              "detail": "4 段 Python 代码全部通过 ast.parse"
+            },
+            {
+              "id": "package_structure",
+              "ok": true,
+              "detail": "2 个压缩包结构完整（含 SKILL.md）"
+            },
+            {
+              "id": "skill_frontmatter",
+              "ok": true,
+              "detail": "frontmatter 含 name + description"
+            },
+            {
+              "id": "workflow_described",
+              "ok": true,
+              "detail": "命中 /工作流/ → …教学设计专家经验\"封装成可复用的 AI 工作流：**只要给出课程主题、授课对象、教学目…"
+            }
+          ]
+        },
+        {
+          "key": "verifiable",
+          "label": "可验证",
+          "ratio": 1.0,
+          "rating": "✅",
+          "checks": [
+            {
+              "id": "has_examples",
+              "ok": true,
+              "detail": "命中 /示例/ → …校验器会真报错，不是只会打满分。  完整示例见 Demo 三件套：`Songpeng…"
+            },
+            {
+              "id": "expected_output_defined",
+              "ok": true,
+              "detail": "命中 /预期/ → …7 天传播计划  | 天 | 动作 | 预期产出 | |----|------|--…"
+            },
+            {
+              "id": "reproducible_commands",
+              "ok": true,
+              "detail": "命中 /python +[^\\s]+\\.py/ → …。 5. **自检（v2 新增）**：`python scripts/lesson_check.py 教案.md` → 拿到 0–100 分…"
+            },
+            {
+              "id": "demo_evidence",
+              "ok": true,
+              "detail": "既有截图/录屏（Songpengfei_C4_demo.png），又有实录文档（Songpengfei_C4_demo_示例教案输出.md）"
+            },
+            {
+              "id": "success_criteria",
+              "ok": true,
+              "detail": "命中 /通过/ → …ML，不改工作流与脚本。 - 校验规则可通过 `--json` 输出接入 CI：教案…"
+            }
+          ]
+        },
+        {
+          "key": "clear_io",
+          "label": "IO 明确",
+          "ratio": 1.0,
+          "rating": "✅",
+          "checks": [
+            {
+              "id": "input_section",
+              "ok": true,
+              "detail": "命中 /输入/ → …范的教案格式与评估量表 |  ## 三、输入与输出（Clear I/O）  **输入…"
+            },
+            {
+              "id": "output_section",
+              "ok": true,
+              "detail": "命中 /输出/ → …ck.py`、修复 Windows 中文输出乱码、重构 demo。  ---  ##…"
+            },
+            {
+              "id": "io_oneliner",
+              "ok": true,
+              "detail": "命中 /输入.{0,80}?输出/ → …范的教案格式与评估量表 |  ## 三、输入与输出（Clear I/O）  **输入（最少…"
+            },
+            {
+              "id": "io_typed",
+              "ok": true,
+              "detail": "命中 /(\\.md|\\.json|\\.csv|\\.xlsx|\\.pdf|\\.png|\\.mp4)/ → …cutable） | ✅ | SKILL.md 7 步工作流可直接执行；`lesson…"
+            }
+          ]
+        }
+      ],
+      "score": 100.0,
+      "red_flags": [],
+      "actions": []
+    },
+    {
+      "author": "Liyang",
+      "tag": "合成夹具",
+      "version": 1,
+      "completeness": {
+        "matched": 4,
+        "band": "partial",
+        "missing": [
+          "Demo（视频/截图/实录）"
+        ],
+        "roles": {
+          "skill_doc": [
+            "Liyang_C4_skill说明.md"
+          ],
+          "executable_content": [
+            "Liyang_C4_note-organizer.py"
+          ],
+          "demo": [],
+          "teaching_doc": [
+            "Liyang_C4_教学说明.md"
+          ],
+          "ai_log": [
+            "Liyang_C4_AI日志.md"
+          ]
+        }
+      },
+      "criteria": [
+        {
+          "key": "reusable",
+          "label": "可复用",
+          "ratio": 0.6,
+          "rating": "⚠️",
+          "checks": [
+            {
+              "id": "install_instructions",
+              "ok": true,
+              "detail": "命中 /使用步骤/ → …一份 index.md 目录。  ## 使用步骤  1. 把笔记放进一个文件夹 2. 运…"
+            },
+            {
+              "id": "no_absolute_paths",
+              "ok": true,
+              "detail": "未发现硬编码/敏感内容"
+            },
+            {
+              "id": "env_requirements",
+              "ok": false,
+              "detail": "未命中任何模式（10 条）"
+            },
+            {
+              "id": "platform_noted",
+              "ok": false,
+              "detail": "未命中任何模式（8 条）"
+            },
+            {
+              "id": "no_hardcoded_secrets",
+              "ok": true,
+              "detail": "未发现硬编码/敏感内容"
+            }
+          ]
+        },
+        {
+          "key": "executable",
+          "label": "可执行",
+          "ratio": 0.6667,
+          "rating": "⚠️",
+          "checks": [
+            {
+              "id": "runnable_artifact",
+              "ok": true,
+              "detail": "可运行产物：Liyang_C4_note-organizer.py"
+            },
+            {
+              "id": "code_parses",
+              "ok": true,
+              "detail": "1 段 Python 代码全部通过 ast.parse"
+            },
+            {
+              "id": "package_structure",
+              "ok": null,
+              "detail": "无 .skill/.zip 压缩包（跳过）"
+            },
+            {
+              "id": "skill_frontmatter",
+              "ok": null,
+              "detail": "未提交 SKILL.md（以脚本形式交付，跳过）"
+            },
+            {
+              "id": "workflow_described",
+              "ok": false,
+              "detail": "未命中任何模式（8 条）"
+            }
+          ]
+        },
+        {
+          "key": "verifiable",
+          "label": "可验证",
+          "ratio": 0.2,
+          "rating": "❌",
+          "checks": [
+            {
+              "id": "has_examples",
+              "ok": false,
+              "detail": "未命中任何模式（6 条）"
+            },
+            {
+              "id": "expected_output_defined",
+              "ok": false,
+              "detail": "未命中任何模式（8 条）"
+            },
+            {
+              "id": "reproducible_commands",
+              "ok": true,
+              "detail": "命中 /python +[^\\s]+\\.py/ → …py 放到笔记文件夹旁边 3. 运行 `python note-organizer.py 笔记文件夹` 4. 看 index.m…"
+            },
+            {
+              "id": "demo_evidence",
+              "ok": false,
+              "detail": "未识别到 demo 文件"
+            },
+            {
+              "id": "success_criteria",
+              "ok": false,
+              "detail": "未命中任何模式（11 条）"
+            }
+          ]
+        },
+        {
+          "key": "clear_io",
+          "label": "IO 明确",
+          "ratio": 1.0,
+          "rating": "✅",
+          "checks": [
+            {
+              "id": "input_section",
+              "ok": true,
+              "detail": "命中 /输入/ → …它们按课程自动归类并生成目录。  ## 输入输出  输入：一个放着 .txt 笔记的…"
+            },
+            {
+              "id": "output_section",
+              "ok": true,
+              "detail": "命中 /输出/ → …按课程自动归类并生成目录。  ## 输入输出  输入：一个放着 .txt 笔记的文件…"
+            },
+            {
+              "id": "io_oneliner",
+              "ok": true,
+              "detail": "命中 /输入.{0,80}?输出/ → …它们按课程自动归类并生成目录。  ## 输入输出  输入：一个放着 .txt 笔记的文件…"
+            },
+            {
+              "id": "io_typed",
+              "ok": true,
+              "detail": "命中 /(\\.md|\\.json|\\.csv|\\.xlsx|\\.pdf|\\.png|\\.mp4)/ → …记的文件夹路径。 输出：一份 index.md 目录。  ## 使用步骤  1. 把笔…"
+            }
+          ]
+        }
+      ],
+      "score": 69.0,
+      "red_flags": [
+        "one_shot_ai"
+      ],
+      "actions": [
+        {
+          "priority": 1,
+          "area": "交付物完整性",
+          "text": "补交 demo：录屏、截图，或一份把技能真实输出贴出来的《demo_示例输出.md》"
+        },
+        {
+          "priority": 2,
+          "area": "可验证",
+          "text": "有真实案例/示例 —— 补一个真实案例：什么输入、技能产出了什么"
+        },
+        {
+          "priority": 2,
+          "area": "可验证",
+          "text": "定义了预期输出 —— 写清『正确输出长什么样』，例如给出一段应得 100 分的样例输出"
+        },
+        {
+          "priority": 2,
+          "area": "可验证",
+          "text": "demo 能证明真实跑过 —— demo 要贴真实运行输出（不是示意图），最好带分数、截图或录屏"
+        },
+        {
+          "priority": 2,
+          "area": "可验证",
+          "text": "成功/失败判据明确 —— 加一节『成功判据』：满足哪几条算通过，不满足会报什么错"
+        },
+        {
+          "priority": 2,
+          "area": "可验证",
+          "text": "先解决『怎么算成功』：给一个真实案例 + 预期输出 + 一条可复制的复现命令。"
+        }
+      ]
+    },
+    {
+      "author": "Zhaolei",
+      "tag": "合成夹具",
+      "version": 1,
+      "completeness": {
+        "matched": 2,
+        "band": "insufficient",
+        "missing": [
+          "Demo（视频/截图/实录）",
+          "教学说明",
+          "AI 日志"
+        ],
+        "roles": {
+          "skill_doc": [
+            "Zhaolei_C4_技能说明.md"
+          ],
+          "executable_content": [
+            "Zhaolei_C4_批量改名脚本.py"
+          ],
+          "demo": [],
+          "teaching_doc": [],
+          "ai_log": []
+        }
+      },
+      "criteria": [
+        {
+          "key": "reusable",
+          "label": "可复用",
+          "ratio": 0.2,
+          "rating": "❌",
+          "checks": [
+            {
+              "id": "install_instructions",
+              "ok": false,
+              "detail": "未命中任何模式（11 条）"
+            },
+            {
+              "id": "no_absolute_paths",
+              "ok": false,
+              "detail": "发现 3 处：[A-Za-z]:\\\\ → D:\\；[A-Za-z]:\\\\ → D:\\；[A-Za-z]:\\\\ → D:\\"
+            },
+            {
+              "id": "env_requirements",
+              "ok": false,
+              "detail": "未命中任何模式（10 条）"
+            },
+            {
+              "id": "platform_noted",
+              "ok": false,
+              "detail": "未命中任何模式（8 条）"
+            },
+            {
+              "id": "no_hardcoded_secrets",
+              "ok": true,
+              "detail": "未发现硬编码/敏感内容"
+            }
+          ]
+        },
+        {
+          "key": "executable",
+          "label": "可执行",
+          "ratio": 0.6667,
+          "rating": "⚠️",
+          "checks": [
+            {
+              "id": "runnable_artifact",
+              "ok": true,
+              "detail": "可运行产物：Zhaolei_C4_批量改名脚本.py"
+            },
+            {
+              "id": "code_parses",
+              "ok": true,
+              "detail": "1 段 Python 代码全部通过 ast.parse"
+            },
+            {
+              "id": "package_structure",
+              "ok": null,
+              "detail": "无 .skill/.zip 压缩包（跳过）"
+            },
+            {
+              "id": "skill_frontmatter",
+              "ok": null,
+              "detail": "未提交 SKILL.md（以脚本形式交付，跳过）"
+            },
+            {
+              "id": "workflow_described",
+              "ok": false,
+              "detail": "未命中任何模式（8 条）"
+            }
+          ]
+        },
+        {
+          "key": "verifiable",
+          "label": "可验证",
+          "ratio": 0.0,
+          "rating": "❌",
+          "checks": [
+            {
+              "id": "has_examples",
+              "ok": false,
+              "detail": "未命中任何模式（6 条）"
+            },
+            {
+              "id": "expected_output_defined",
+              "ok": false,
+              "detail": "未命中任何模式（8 条）"
+            },
+            {
+              "id": "reproducible_commands",
+              "ok": false,
+              "detail": "未命中任何模式（9 条）"
+            },
+            {
+              "id": "demo_evidence",
+              "ok": false,
+              "detail": "未识别到 demo 文件"
+            },
+            {
+              "id": "success_criteria",
+              "ok": false,
+              "detail": "未命中任何模式（11 条）"
+            }
+          ]
+        },
+        {
+          "key": "clear_io",
+          "label": "IO 明确",
+          "ratio": 0.75,
+          "rating": "✅",
+          "checks": [
+            {
+              "id": "input_section",
+              "ok": true,
+              "detail": "命中 /输入/ → …# 说明  这个技能能把文件名批量改掉。输入是我电脑上的一个文件夹，输出是改好名字的…"
+            },
+            {
+              "id": "output_section",
+              "ok": true,
+              "detail": "命中 /输出/ → …名批量改掉。输入是我电脑上的一个文件夹，输出是改好名字的文件。  ## 怎么用  直…"
+            },
+            {
+              "id": "io_oneliner",
+              "ok": true,
+              "detail": "命中 /输入.{0,80}?输出/ → …# 说明  这个技能能把文件名批量改掉。输入是我电脑上的一个文件夹，输出是改好名字的文件。  ## 怎么用  直…"
+            },
+            {
+              "id": "io_typed",
+              "ok": false,
+              "detail": "未命中任何模式（7 条）"
+            }
+          ]
+        }
+      ],
+      "score": 40.25,
+      "red_flags": [
+        "missing_artifacts",
+        "no_ai_log"
+      ],
+      "actions": [
+        {
+          "priority": 1,
+          "area": "交付物完整性",
+          "text": "补交 demo：录屏、截图，或一份把技能真实输出贴出来的《demo_示例输出.md》"
+        },
+        {
+          "priority": 1,
+          "area": "交付物完整性",
+          "text": "补交《姓名_C4_教学说明.md》：怎么上手、常见坑、优化技巧——重点是教会别人用"
+        },
+        {
+          "priority": 1,
+          "area": "交付物完整性",
+          "text": "补交《姓名_C4_AI日志.md》：用了哪些 AI、prompt 怎么写的、迭代了几轮、你自己做了什么判断"
+        },
+        {
+          "priority": 2,
+          "area": "可复用",
+          "text": "有安装/上手步骤 —— 在说明里加一段明确的『安装/导入』小节（装到哪、依赖怎么装）"
+        },
+        {
+          "priority": 2,
+          "area": "可复用",
+          "text": "无硬编码绝对路径 —— 把写死的本机路径换成参数/相对路径，例如把 D:\\我的资料\\x.xlsx 改成命令行传入的 <folder>"
+        },
+        {
+          "priority": 2,
+          "area": "可复用",
+          "text": "声明了运行环境/依赖 —— 加一行『环境要求』：Python 版本 / 依赖包 / 是否需要联网或 API Key"
+        }
+      ]
+    }
+  ]
+}

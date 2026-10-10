@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>C4 提交自动评审 · 班级仪表板</title>
+<style>
+ :root{--bg:#f6f7fb;--card:#fff;--ink:#1b1f2a;--muted:#6b7280;--line:#e5e7eb;
+       --ok:#16a34a;--warn:#d97706;--bad:#dc2626;--accent:#2f5496}
+ *{box-sizing:border-box}
+ body{margin:0;padding:32px;background:var(--bg);color:var(--ink);
+      font:15px/1.6 -apple-system,"Segoe UI","Microsoft YaHei",sans-serif}
+ h1{font-size:26px;margin:0 0 4px} h2{font-size:19px;margin:32px 0 12px}
+ .sub{color:var(--muted);margin-bottom:24px}
+ .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+ .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+ .card .k{color:var(--muted);font-size:12px} .card .v{font-size:26px;font-weight:700;margin-top:2px}
+ table{width:100%;border-collapse:collapse;background:var(--card);
+       border:1px solid var(--line);border-radius:10px;overflow:hidden}
+ th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+ th{background:#eef2fa;font-weight:600;font-size:13px}
+ tr:last-child td{border-bottom:0}
+ .num{text-align:right;font-variant-numeric:tabular-nums}
+ .bar{height:8px;border-radius:4px;background:#e5e7eb;overflow:hidden;min-width:70px}
+ .bar>i{display:block;height:100%}
+ .ok{color:var(--ok)} .warn{color:var(--warn)} .bad{color:var(--bad)}
+ .pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:12px;border:1px solid var(--line)}
+ details{margin:6px 0 14px} summary{cursor:pointer;color:var(--accent)}
+ .tag{background:#fff4d6;border:1px solid #f0c36d;border-radius:6px;padding:1px 6px;font-size:12px}
+ code{background:#f0f2f7;padding:1px 5px;border-radius:4px;font-size:13px}
+ footer{color:var(--muted);margin-top:36px;font-size:13px}
+</style></head><body>
+
+<h1>C4 提交自动评审 · 班级仪表板</h1>
+<div class="sub">扫描路径 <code>samples\real</code> ｜ 生成时间 2026-10-08 14:33:35 ｜ 规则版本 v2 ｜ 纯规则（离线可复现）</div>
+<div class="cards">
+<div class="card"><div class="k">提交人数</div><div class="v">1</div></div>
+<div class="card"><div class="k">完整 5/5</div><div class="v">1</div></div>
+<div class="card"><div class="k">部分 3–4</div><div class="v">0</div></div>
+<div class="card"><div class="k">严重缺失</div><div class="v">0</div></div>
+<div class="card"><div class="k">触发红牌</div><div class="v">0</div></div>
+<div class="card"><div class="k">平均综合分</div><div class="v">100.0</div></div>
+</div>
+<h2>四条件班级均值</h2><table><tr><th>维度</th><th class='num'>均值</th><th>分布</th></tr>
+<tr><td>可复用</td><td class='num'>1.00</td><td><div class="bar"><i style="width:100%;background:#16a34a"></i></div></td></tr>
+<tr><td>可执行</td><td class='num'>1.00</td><td><div class="bar"><i style="width:100%;background:#16a34a"></i></div></td></tr>
+<tr><td>可验证</td><td class='num'>1.00</td><td><div class="bar"><i style="width:100%;background:#16a34a"></i></div></td></tr>
+<tr><td>IO 明确</td><td class='num'>1.00</td><td><div class="bar"><i style="width:100%;background:#16a34a"></i></div></td></tr>
+</table>
+<h2>排名</h2><table><tr><th>#</th><th>作者</th><th>完整性</th><th class='num'>四条件</th><th class='num'>综合分</th><th>红牌</th></tr>
+<tr><td class='num'>1</td><td><b>Songpengfei</b></td><td>5/5 ✅</td><td class='num'>4.00</td><td class='num'><b>100.0</b></td><td>—</td></tr>
+</table>
+<h2>各维度得分率</h2><table><tr><th>作者</th><th>可复用</th><th>可执行</th><th>可验证</th><th>IO 明确</th><th class='num'>综合分</th></tr>
+<tr><td><b>Songpengfei</b></td><td><div class="bar"><i style="width:100%;background:#16a34a"></i></div><div class='num' style='font-size:12px;color:#6b7280'>1.00</div></td><td><div class="bar"><i style="width:100%;background:#16a34a"></i></div><div class='num' style='font-size:12px;color:#6b7280'>1.00</div></td><td><div class="bar"><i style="width:100%;background:#16a34a"></i></div><div class='num' style='font-size:12px;color:#6b7280'>1.00</div></td><td><div class="bar"><i style="width:100%;background:#16a34a"></i></div><div class='num' style='font-size:12px;color:#6b7280'>1.00</div></td><td class='num'><b>100.0</b></td></tr>
+</table>
+<h2>逐人详情</h2>
+<details><summary><b>Songpengfei</b> ｜ 完整性 5/5 ｜ 综合分 100.0 ｜ 建议 0 条</summary>
+<table><tr><th>交付物</th><th>状态</th><th>匹配文件</th></tr>
+<tr><td>Skill 说明文档</td><td>✅</td><td><code>Songpengfei_C4_skill说明.md、Songpengfei_C4_传播包.md</code></td></tr>
+<tr><td>可执行内容</td><td>✅</td><td><code>Songpengfei_C4_lesson-design-assistant.skill、Songpengfei_C4_lesson-design-assistant.tar.gz</code></td></tr>
+<tr><td>Demo（视频/截图/实录）</td><td>✅</td><td><code>Songpengfei_C4_demo_示例教案输出.md、Songpengfei_C4_demo.png、Songpengfei_C4_demo_校验报告.md</code></td></tr>
+<tr><td>教学说明</td><td>✅</td><td><code>Songpengfei_C4_README.md、Songpengfei_C4_教学说明.md</code></td></tr>
+<tr><td>AI 日志</td><td>✅</td><td><code>Songpengfei_C4_AI日志.md</code></td></tr>
+</table><table><tr><th>条件</th><th>评级</th><th>逐条证据</th></tr>
+<tr><td>可复用</td><td>✅ 1.00</td><td>✅ 有安装/上手步骤 <span style='color:#6b7280'>— 命中 /安装/ → …|  ## 五、使用步骤  1. **安装**：将 `Songpengfei_C4…</span><br>✅ 无硬编码绝对路径 <span style='color:#6b7280'>— 未发现硬编码/敏感内容</span><br>✅ 声明了运行环境/依赖 <span style='color:#6b7280'>— 命中 /环境要求/ → …Claude Skills 的环境；若环境要求 tar.gz，可用附带的 `.tar.…</span><br>✅ 说明了平台兼容性 <span style='color:#6b7280'>— 命中 /windows/ → …lesson_check.py`、修复 Windows 中文输出乱码、重构 demo。  --…</span><br>✅ 无硬编码密钥/口令 <span style='color:#6b7280'>— 未发现硬编码/敏感内容</span></td></tr>
+<tr><td>可执行</td><td>✅ 1.00</td><td>✅ 包含可运行的产物 <span style='color:#6b7280'>— 可运行产物：Songpengfei_C4_lesson-design-assistant.skill、Songpengfei_C4_lesson-design-assistant.tar.gz</span><br>✅ 代码可被解析（无语法错误） <span style='color:#6b7280'>— 4 段 Python 代码全部通过 ast.parse</span><br>✅ 技能包结构完整 <span style='color:#6b7280'>— 2 个压缩包结构完整（含 SKILL.md）</span><br>✅ SKILL.md frontmatter 有效 <span style='color:#6b7280'>— frontmatter 含 name + description</span><br>✅ 有可照做的流程/工作流 <span style='color:#6b7280'>— 命中 /工作流/ → …教学设计专家经验&quot;封装成可复用的 AI 工作流：**只要给出课程主题、授课对象、教学目…</span></td></tr>
+<tr><td>可验证</td><td>✅ 1.00</td><td>✅ 有真实案例/示例 <span style='color:#6b7280'>— 命中 /示例/ → …校验器会真报错，不是只会打满分。  完整示例见 Demo 三件套：`Songpeng…</span><br>✅ 定义了预期输出 <span style='color:#6b7280'>— 命中 /预期/ → …7 天传播计划  | 天 | 动作 | 预期产出 | |----|------|--…</span><br>✅ 有可复现的命令/步骤 <span style='color:#6b7280'>— 命中 /python +[^\s]+\.py/ → …。 5. **自检（v2 新增）**：`python scripts/lesson_check.py 教案.md` → 拿到 0–100 分…</span><br>✅ demo 能证明真实跑过 <span style='color:#6b7280'>— 既有截图/录屏（Songpengfei_C4_demo.png），又有实录文档（Songpengfei_C4_demo_示例教案输出.md）</span><br>✅ 成功/失败判据明确 <span style='color:#6b7280'>— 命中 /通过/ → …ML，不改工作流与脚本。 - 校验规则可通过 `--json` 输出接入 CI：教案…</span></td></tr>
+<tr><td>IO 明确</td><td>✅ 1.00</td><td>✅ 明确写了输入 <span style='color:#6b7280'>— 命中 /输入/ → …范的教案格式与评估量表 |  ## 三、输入与输出（Clear I/O）  **输入…</span><br>✅ 明确写了输出 <span style='color:#6b7280'>— 命中 /输出/ → …ck.py`、修复 Windows 中文输出乱码、重构 demo。  ---  ##…</span><br>✅ 有一句话输入→输出描述 <span style='color:#6b7280'>— 命中 /输入.{0,80}?输出/ → …范的教案格式与评估量表 |  ## 三、输入与输出（Clear I/O）  **输入（最少…</span><br>✅ 输入输出类型/格式清晰 <span style='color:#6b7280'>— 命中 /(\.md|\.json|\.csv|\.xlsx|\.pdf|\.png|\.mp4)/ → …cutable） | ✅ | SKILL.md 7 步工作流可直接执行；`lesson…</span></td></tr>
+</table>
+</details>
+<footer>由 c4a-skill-evaluator 生成 · C4A 挑战交付物 · 综合分 = 完整性×0.4 + 四条件×0.6，满分 100</footer>
+</body></html>

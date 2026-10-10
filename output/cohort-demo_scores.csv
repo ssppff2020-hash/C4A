@@ -1,0 +1,5 @@
+﻿author,version,files,completeness_matched,completeness_band,quality_ratio,quality_4,composite,red_flags,reusable,executable,verifiable,clear_io,missing_deliverables,top_action
+Chenmingyuan,v1,6,5/5,齐全,1.0,4.0,100.0,,1.0,1.0,1.0,1.0,,
+Songpengfei,v2,10,5/5,齐全,1.0,4.0,100.0,,1.0,1.0,1.0,1.0,,
+Liyang,v1,4,4/5,部分缺失,0.6167,2.467,69.0,一句话指令直接提交,0.6,0.667,0.2,1.0,Demo（视频/截图/实录）,补交 demo：录屏、截图，或一份把技能真实输出贴出来的《demo_示例输出.md》
+Zhaolei,v1,2,2/5,严重缺失,0.4042,1.617,40.25,核心交付物缺失；无 AI 使用记录,0.2,0.667,0.0,0.75,Demo（视频/截图/实录）；教学说明；AI 日志,补交 demo：录屏、截图，或一份把技能真实输出贴出来的《demo_示例输出.md》

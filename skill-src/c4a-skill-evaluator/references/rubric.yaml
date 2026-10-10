@@ -1,0 +1,251 @@
+# =============================================================================
+# C4A evaluator rubric — machine-readable rule set
+# -----------------------------------------------------------------------------
+# Forked from  : materials/c4a-skill-evaluator-starter/references/c4_rubric.yaml
+# Extended with: (a) per-check detectors, (b) per-check improvement text,
+#                (c) red-flag rules lifted from the C4A platform rubric.json.
+#
+# Design note: everything declarative lives here; everything a regex cannot
+# decide (does the .py actually parse? does the .skill actually contain a
+# SKILL.md?) is implemented as a *special detector* in scripts/quality.py and
+# referenced by `detector: special` + `id:`. Adding a new scoring rule should
+# normally require editing only this file.
+#
+# NOTE ON REGEXES: single-quoted YAML scalars are used for every pattern so
+# that backslashes are literal (no YAML escape processing).
+# =============================================================================
+
+version: 2
+challenge: C4A
+title_cn: "技能提交自动评审"
+title_en: "Automated Skill Submission Evaluator"
+
+naming:
+  pattern: "<Name>_C4_<description>.<ext>"
+  note: "Author is the token before the first _C4_ marker in the filename."
+
+# -----------------------------------------------------------------------------
+# 1. COMPLETENESS — the five deliverables required by C4 §四
+# -----------------------------------------------------------------------------
+required_deliverables:
+
+  skill_doc:
+    label_cn: "Skill 说明文档"
+    label_en: "Skill description document"
+    required: true
+    filename_patterns: ["skill说明", "skill文档", "技能说明", "skill_doc", "skill-doc", "skill_description", "skill-description"]
+    content_signals: ["使用场景", "解决什么问题", "输入", "输出", "使用步骤", "这个技能解决"]
+    preferred_extensions: [".md", ".pdf", ".docx"]
+    missing_suggestion: "补交《姓名_C4_skill说明.md》：解决什么问题 / 使用场景 / 输入输出 / 使用步骤 / 真实案例"
+
+  executable_content:
+    label_cn: "可执行内容"
+    label_en: "Executable skill content"
+    required: true
+    filename_patterns: ["技能名", "skill", "prompt", "workflow", ".py", "脚本"]
+    content_signals: ["```", "def ", "class ", "import ", "workflow", "pipeline"]
+    preferred_extensions: [".skill", ".py", ".md", ".zip", ".tar.gz", ".sh", ".js"]
+    missing_suggestion: "补交可执行内容（.skill / .py / .md），不要把技能只写成一篇教程"
+
+  demo:
+    label_cn: "Demo（视频/截图/实录）"
+    label_en: "Demo (video / screenshot / transcript)"
+    required: true
+    filename_patterns: ["demo", "演示", "截图", "录屏", "screen", "案例输出", "运行结果"]
+    content_signals: ["demo", "演示", "截图", "运行结果", "输出如下", "实际效果"]
+    preferred_extensions: [".mp4", ".mov", ".webm", ".png", ".jpg", ".jpeg", ".gif", ".md"]
+    missing_suggestion: "补交 demo：录屏、截图，或一份把技能真实输出贴出来的《demo_示例输出.md》"
+
+  teaching_doc:
+    label_cn: "教学说明"
+    label_en: "Teaching instructions"
+    required: true
+    filename_patterns: ["教学说明", "教学", "上手指南", "tutorial", "teaching", "quickstart", "how-to", "readme"]
+    content_signals: ["上手", "步骤", "常见坑", "安装", "注意事项", "getting started"]
+    preferred_extensions: [".md", ".pdf", ".docx"]
+    missing_suggestion: "补交《姓名_C4_教学说明.md》：怎么上手、常见坑、优化技巧——重点是教会别人用"
+
+  ai_log:
+    label_cn: "AI 日志"
+    label_en: "AI usage log"
+    required: true
+    filename_patterns: ["ai日志", "ai_log", "ai-log", "ai_日志", "aigc日志", "ai使用记录", "对话记录"]
+    content_signals: ["使用的 ai", "ai 工具", "prompt", "迭代", "chatgpt", "claude", "deepseek", "cursor"]
+    preferred_extensions: [".md", ".pdf", ".docx"]
+    missing_suggestion: "补交《姓名_C4_AI日志.md》：用了哪些 AI、prompt 怎么写的、迭代了几轮、你自己做了什么判断"
+
+# -----------------------------------------------------------------------------
+# 2. QUALITY — the four C4 conditions (C4 §二)
+#    Each check contributes equally to its criterion.
+#    detector: regex         -> satisfied if ANY pattern matches
+#              regex_absent  -> satisfied if NO pattern matches
+#              regex_all     -> satisfied if ALL patterns match (rarely used)
+#              special       -> implemented in scripts/quality.py
+# -----------------------------------------------------------------------------
+quality_criteria:
+
+  reusable:
+    label_cn: "可复用"
+    label_en: "Reusable"
+    weight: 0.25
+    description: "别人拿过去能直接用，不依赖你的特定环境"
+    checks:
+      - id: install_instructions
+        label: "有安装/上手步骤"
+        detector: regex
+        any: ['安装', '导入', '加载', '部署', 'install', 'setup', 'pip install', 'npm install', 'quick ?start', '快速开始', '使用步骤']
+        suggestion: "在说明里加一段明确的『安装/导入』小节（装到哪、依赖怎么装）"
+      - id: no_absolute_paths
+        label: "无硬编码绝对路径"
+        detector: regex_absent
+        any: ['[A-Za-z]:\\', '/Users/', '/home/[A-Za-z]', '/mnt/user-data', '/var/folders', 'D:\\高校教师', '我的电脑']
+        suggestion: '把写死的本机路径换成参数/相对路径，例如把 D:\我的资料\x.xlsx 改成命令行传入的 <folder>'
+      - id: env_requirements
+        label: "声明了运行环境/依赖"
+        detector: regex
+        any: ['环境要求', '运行环境', '依赖', 'requirements', 'python 3', 'node', '纯标准库', '零依赖', '无需安装', 'prerequisite']
+        suggestion: "加一行『环境要求』：Python 版本 / 依赖包 / 是否需要联网或 API Key"
+      - id: platform_noted
+        label: "说明了平台兼容性"
+        detector: regex
+        any: ['跨平台', 'windows', 'macos', 'linux', '平台', '兼容', 'compatible', 'platform']
+        suggestion: "说明该技能在 Windows / macOS / Linux 上是否都能跑，有没有平台相关的坑"
+      - id: no_hardcoded_secrets
+        label: "无硬编码密钥/口令"
+        detector: regex_absent
+        any: ['(api[_-]?key|access[_-]?token|password|secret)\s*[:=]\s*[A-Za-z0-9_\-]{16,}']
+        suggestion: "把 API Key / 口令改成读环境变量，不要写进提交文件"
+
+  executable:
+    label_cn: "可执行"
+    label_en: "Executable"
+    weight: 0.25
+    description: "不是理论，是能跑的东西"
+    checks:
+      - id: runnable_artifact
+        label: "包含可运行的产物"
+        detector: special
+        suggestion: "附上真正能跑的东西：.skill 包 / .py 脚本 / 可复制的 prompt 或 workflow"
+      - id: code_parses
+        label: "代码可被解析（无语法错误）"
+        detector: special
+        suggestion: "用 `python -m py_compile 你的脚本.py` 自检一遍，修掉语法错误再提交"
+      - id: package_structure
+        label: "技能包结构完整"
+        detector: special
+        suggestion: "让 .skill / .zip 里包含 SKILL.md（或解压后顶层目录里有 SKILL.md）"
+      - id: skill_frontmatter
+        label: "SKILL.md frontmatter 有效"
+        detector: special
+        suggestion: "给 SKILL.md 补 YAML frontmatter：name + description（description 要写清触发场景）"
+      - id: workflow_described
+        label: "有可照做的流程/工作流"
+        detector: regex
+        any: ['## *步骤', '## *工作流', '工作流', 'workflow', '流程', 'step *[0-9１-９]', '第 *[一二三四五六七八九十] *步', 'pipeline']
+        suggestion: "把技能写成编号步骤（Step 1/2/3…），别人照着念就能跑"
+
+  verifiable:
+    label_cn: "可验证"
+    label_en: "Verifiable"
+    weight: 0.25
+    description: "有明确的输入输出，能判断成功与否"
+    checks:
+      - id: has_examples
+        label: "有真实案例/示例"
+        detector: regex
+        any: ['示例', '案例', '例子', 'example', 'e\.g\.', '例如']
+        suggestion: "补一个真实案例：什么输入、技能产出了什么"
+      - id: expected_output_defined
+        label: "定义了预期输出"
+        detector: regex
+        any: ['预期', '期望', '应输出', '输出应为', '应得', 'expected', '得到 *[0-9]+ *分', '得分']
+        suggestion: "写清『正确输出长什么样』，例如给出一段应得 100 分的样例输出"
+      - id: reproducible_commands
+        label: "有可复现的命令/步骤"
+        detector: regex
+        any: ['python +[^\s]+\.py', '运行命令', '退出码', 'exit code', '复现', 'reproduce', '命令行', '执行下列', 'npm run']
+        suggestion: "给出可直接复制粘贴的复现命令，并说明成功/失败的退出码"
+      - id: demo_evidence
+        label: "demo 能证明真实跑过"
+        detector: special
+        suggestion: "demo 要贴真实运行输出（不是示意图），最好带分数、截图或录屏"
+      - id: success_criteria
+        label: "成功/失败判据明确"
+        detector: regex
+        any: ['通过', '失败', '合格', '不合格', '阈值', '判据', '评分标准', 'pass', 'fail', 'score', '校验规则']
+        suggestion: "加一节『成功判据』：满足哪几条算通过，不满足会报什么错"
+
+  clear_io:
+    label_cn: "IO 明确"
+    label_en: "Clear I/O"
+    weight: 0.25
+    description: "输入什么、输出什么，一目了然"
+    checks:
+      - id: input_section
+        label: "明确写了输入"
+        detector: regex
+        any: ['输入', 'input', '接收', '接受', '需要提供', 'requires', 'takes']
+        suggestion: "加一节『输入』，列出必填项和可选项"
+      - id: output_section
+        label: "明确写了输出"
+        detector: regex
+        any: ['输出', 'output', '产出', '返回', '生成', 'generates', 'produces', 'returns']
+        suggestion: "加一节『输出』，说明产出物是什么格式、长什么样"
+      - id: io_oneliner
+        label: "有一句话输入→输出描述"
+        detector: regex
+        any: ['输入.{0,80}?输出', 'input.{0,80}?output', '接受.{0,60}?返回', '给定.{0,60}?得到', '传入.{0,60}?产出']
+        suggestion: "补一句『输入____，输出____』的电梯陈述——评审第一眼就看这句"
+      - id: io_typed
+        label: "输入输出类型/格式清晰"
+        detector: regex
+        any: ['类型[:：]', '格式[:：]', '(\.md|\.json|\.csv|\.xlsx|\.pdf|\.png|\.mp4)', '文件夹路径', '目录路径', 'folder path', 'directory']
+        suggestion: "注明输入输出的具体类型/格式（如：输入文件夹路径；输出 Markdown + CSV）"
+
+# -----------------------------------------------------------------------------
+# 3. SCORING
+# -----------------------------------------------------------------------------
+scoring:
+  # per-criterion: ratio of satisfied checks -> rating
+  rating_thresholds:
+    pass: 0.70      # >= 0.70 satisfied -> pass
+    partial: 0.30   # >= 0.30 satisfied -> partial
+  # completeness bands (files matched out of 5)
+  completeness_bands:
+    complete: 5        # ✅
+    partial: 3         # ⚠️  (3-4)
+    insufficient: 0    # ❌  (<3)
+  # composite = completeness_weight * completeness + quality_weight * quality
+  composite:
+    completeness_weight: 0.4
+    quality_weight: 0.6
+    scale: 100
+
+# -----------------------------------------------------------------------------
+# 4. RED FLAGS — mirrored from the platform rubric.json (C4A)
+# -----------------------------------------------------------------------------
+red_flags:
+  - id: missing_artifacts
+    label_cn: "核心交付物缺失"
+    dimension: artifact_completeness
+    rule: "fewer than 3 of the 5 required deliverables present"
+    penalty: 5
+  - id: no_ai_log
+    label_cn: "无 AI 使用记录"
+    dimension: reflection_quality
+    rule: "ai_log deliverable missing"
+    penalty: 5
+  - id: one_shot_ai
+    label_cn: "一句话指令直接提交"
+    dimension: ai_usage
+    rule: "ai_log present but shows no iteration (no round/version/prompt-refinement evidence and < 400 chars)"
+    penalty: 5
+
+# -----------------------------------------------------------------------------
+# 5. FALLBACK SUGGESTION CATALOG (used when a whole criterion scores ❌)
+# -----------------------------------------------------------------------------
+criterion_fallback_suggestions:
+  reusable: "先解决『换成别人电脑还能不能跑』：补安装步骤、去掉写死的本机路径、列清依赖。"
+  executable: "先解决『能不能真跑』：交付一个 .skill 包或 .py 脚本，并保证 `python -m py_compile` 通过。"
+  verifiable: "先解决『怎么算成功』：给一个真实案例 + 预期输出 + 一条可复制的复现命令。"
+  clear_io: "先解决『一句话说不说得清』：在文档开头补『输入____，输出____』。"

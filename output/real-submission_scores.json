@@ -1,0 +1,189 @@
+{
+  "folder": "samples\\real",
+  "generated_at": "2026-10-08 14:33:35",
+  "rubric_version": "v2",
+  "stats": {
+    "n": 1,
+    "complete": 1,
+    "partial": 0,
+    "insufficient": 0,
+    "avg_quality": 1.0,
+    "avg_composite": 100.0,
+    "flagged": 0,
+    "most_missing": [
+      "—",
+      0
+    ],
+    "weakest": [
+      "可复用",
+      1.0
+    ],
+    "missing_counter": {}
+  },
+  "authors": [
+    {
+      "author": "Songpengfei",
+      "tag": "",
+      "version": 2,
+      "completeness": {
+        "matched": 5,
+        "band": "complete",
+        "missing": [],
+        "roles": {
+          "skill_doc": [
+            "Songpengfei_C4_skill说明.md",
+            "Songpengfei_C4_传播包.md"
+          ],
+          "executable_content": [
+            "Songpengfei_C4_lesson-design-assistant.skill",
+            "Songpengfei_C4_lesson-design-assistant.tar.gz"
+          ],
+          "demo": [
+            "Songpengfei_C4_demo_示例教案输出.md",
+            "Songpengfei_C4_demo.png",
+            "Songpengfei_C4_demo_校验报告.md"
+          ],
+          "teaching_doc": [
+            "Songpengfei_C4_README.md",
+            "Songpengfei_C4_教学说明.md"
+          ],
+          "ai_log": [
+            "Songpengfei_C4_AI日志.md"
+          ]
+        }
+      },
+      "criteria": [
+        {
+          "key": "reusable",
+          "label": "可复用",
+          "ratio": 1.0,
+          "rating": "✅",
+          "checks": [
+            {
+              "id": "install_instructions",
+              "ok": true,
+              "detail": "命中 /安装/ → …|  ## 五、使用步骤  1. **安装**：将 `Songpengfei_C4…"
+            },
+            {
+              "id": "no_absolute_paths",
+              "ok": true,
+              "detail": "未发现硬编码/敏感内容"
+            },
+            {
+              "id": "env_requirements",
+              "ok": true,
+              "detail": "命中 /环境要求/ → …Claude Skills 的环境；若环境要求 tar.gz，可用附带的 `.tar.…"
+            },
+            {
+              "id": "platform_noted",
+              "ok": true,
+              "detail": "命中 /windows/ → …lesson_check.py`、修复 Windows 中文输出乱码、重构 demo。  --…"
+            },
+            {
+              "id": "no_hardcoded_secrets",
+              "ok": true,
+              "detail": "未发现硬编码/敏感内容"
+            }
+          ]
+        },
+        {
+          "key": "executable",
+          "label": "可执行",
+          "ratio": 1.0,
+          "rating": "✅",
+          "checks": [
+            {
+              "id": "runnable_artifact",
+              "ok": true,
+              "detail": "可运行产物：Songpengfei_C4_lesson-design-assistant.skill、Songpengfei_C4_lesson-design-assistant.tar.gz"
+            },
+            {
+              "id": "code_parses",
+              "ok": true,
+              "detail": "4 段 Python 代码全部通过 ast.parse"
+            },
+            {
+              "id": "package_structure",
+              "ok": true,
+              "detail": "2 个压缩包结构完整（含 SKILL.md）"
+            },
+            {
+              "id": "skill_frontmatter",
+              "ok": true,
+              "detail": "frontmatter 含 name + description"
+            },
+            {
+              "id": "workflow_described",
+              "ok": true,
+              "detail": "命中 /工作流/ → …教学设计专家经验\"封装成可复用的 AI 工作流：**只要给出课程主题、授课对象、教学目…"
+            }
+          ]
+        },
+        {
+          "key": "verifiable",
+          "label": "可验证",
+          "ratio": 1.0,
+          "rating": "✅",
+          "checks": [
+            {
+              "id": "has_examples",
+              "ok": true,
+              "detail": "命中 /示例/ → …校验器会真报错，不是只会打满分。  完整示例见 Demo 三件套：`Songpeng…"
+            },
+            {
+              "id": "expected_output_defined",
+              "ok": true,
+              "detail": "命中 /预期/ → …7 天传播计划  | 天 | 动作 | 预期产出 | |----|------|--…"
+            },
+            {
+              "id": "reproducible_commands",
+              "ok": true,
+              "detail": "命中 /python +[^\\s]+\\.py/ → …。 5. **自检（v2 新增）**：`python scripts/lesson_check.py 教案.md` → 拿到 0–100 分…"
+            },
+            {
+              "id": "demo_evidence",
+              "ok": true,
+              "detail": "既有截图/录屏（Songpengfei_C4_demo.png），又有实录文档（Songpengfei_C4_demo_示例教案输出.md）"
+            },
+            {
+              "id": "success_criteria",
+              "ok": true,
+              "detail": "命中 /通过/ → …ML，不改工作流与脚本。 - 校验规则可通过 `--json` 输出接入 CI：教案…"
+            }
+          ]
+        },
+        {
+          "key": "clear_io",
+          "label": "IO 明确",
+          "ratio": 1.0,
+          "rating": "✅",
+          "checks": [
+            {
+              "id": "input_section",
+              "ok": true,
+              "detail": "命中 /输入/ → …范的教案格式与评估量表 |  ## 三、输入与输出（Clear I/O）  **输入…"
+            },
+            {
+              "id": "output_section",
+              "ok": true,
+              "detail": "命中 /输出/ → …ck.py`、修复 Windows 中文输出乱码、重构 demo。  ---  ##…"
+            },
+            {
+              "id": "io_oneliner",
+              "ok": true,
+              "detail": "命中 /输入.{0,80}?输出/ → …范的教案格式与评估量表 |  ## 三、输入与输出（Clear I/O）  **输入（最少…"
+            },
+            {
+              "id": "io_typed",
+              "ok": true,
+              "detail": "命中 /(\\.md|\\.json|\\.csv|\\.xlsx|\\.pdf|\\.png|\\.mp4)/ → …cutable） | ✅ | SKILL.md 7 步工作流可直接执行；`lesson…"
+            }
+          ]
+        }
+      ],
+      "score": 100.0,
+      "red_flags": [],
+      "actions": []
+    }
+  ]
+}
